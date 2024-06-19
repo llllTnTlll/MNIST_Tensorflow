@@ -1,7 +1,6 @@
 import tensorflow as tf
 import model
 import data
-from tqdm import tqdm
 
 
 @tf.function(input_signature=[tf.TensorSpec(shape=[None, 784], dtype=tf.float32),

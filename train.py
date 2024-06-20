@@ -1,6 +1,7 @@
 import tensorflow as tf
 import model
 import data
+from matplotlib import pyplot as plt
 
 
 @tf.function(input_signature=[tf.TensorSpec(shape=[None, 784], dtype=tf.float32),
@@ -31,6 +32,7 @@ if __name__ == "__main__":
     images, labels = data.load_mnist(dataset_path)
 
     best_loss = float('inf')
+    losses = []
     for epoch in range(50):
         batch_generator = data.create_batch_generator(images, labels, shuffle=True)
         batch_training_losses = []
@@ -39,11 +41,18 @@ if __name__ == "__main__":
             batch_training_losses.append(loss)
 
         avg_loss = sum(batch_training_losses)/len(batch_training_losses)
+        losses.append(avg_loss)
+
         if avg_loss < best_loss:
             best_loss = avg_loss
             my_model.save(best_model_path)
 
         print(f"Epoch {epoch + 1}, Average Loss: {avg_loss}")
 
-
+    plt.plot(range(1, 51), losses, marker='o')
+    plt.title('Training Loss Over Epochs')
+    plt.xlabel('Epoch')
+    plt.ylabel('Average Loss')
+    plt.grid(True)
+    plt.show()
 

@@ -1,7 +1,6 @@
 import os
 import struct
 
-import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 import tensorflow as tf
@@ -71,3 +70,4 @@ if __name__ == "__main__":
     data_path = "./dataset"
     train_img, train_label = load_mnist(data_path)
     display_mnist_images(train_img, train_label, 30)
+

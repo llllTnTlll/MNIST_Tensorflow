@@ -15,7 +15,7 @@ def preprocess_image(image_path):
 
 
 if __name__ == '__main__':
-    img_path = "img_sample/4.png"
+    img_path = "img_sample/2.png"
 
     # reload the model
     trained_model = tf.keras.models.load_model(filepath="record/my_best_model.keras")
